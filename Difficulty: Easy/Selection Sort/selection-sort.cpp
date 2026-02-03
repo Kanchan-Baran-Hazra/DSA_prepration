@@ -3,7 +3,7 @@ class Solution {
     // Function to perform selection sort on the given array.
     void selectionSort(vector<int> &arr) {
         // code here
-        for(int i=0;i<arr.size()-1;i++){
+        for(int i=0;i<arr.size();i++){
             int val=INT_MAX;
             int index=-1;
             for(int j=i;j<arr.size();j++){
