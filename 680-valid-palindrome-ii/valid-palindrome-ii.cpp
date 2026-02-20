@@ -13,7 +13,6 @@ public:
 
         while(i < j){
             if(s[i] != s[j]){
-                // delete either left or right char once
                 return isPalindrome(s, i+1, j) || isPalindrome(s, i, j-1);
             }
             i++; j--;
