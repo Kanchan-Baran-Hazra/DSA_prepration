@@ -2,10 +2,10 @@ class Solution {
   public:
     vector<int> nextLargerElement(vector<int>& arr) {
         // code here
-        priority_queue<int, vector<int>, greater<int>>pq;
+        priority_queue<int, vector<int>, greater<int>> pq;
         vector<int>ans;
         for(int i=arr.size()-1;i>=0;i--){
-            while(pq.size()!=0 && arr[i]>=pq.top()){
+            while(pq.size()!=0 && pq.top()<=arr[i]){
                 pq.pop();
             }
             if(pq.size()==0){
