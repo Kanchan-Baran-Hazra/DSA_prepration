@@ -2,17 +2,17 @@ class Solution {
   public:
     int maxProduct(vector<int> &arr) {
         // code here
-        int ans=INT_MIN;
-        int n=arr.size();
-        int prod=1;
-        int prod1=1;
+        int n=arr.size()-1;
+        int left=1;
+        int right=1;
+        int maxi=INT_MIN;
         for(int i=0;i<arr.size();i++){
-            prod*=arr[i];
-            prod1*=arr[n-1-i];
-            ans=max(ans,max(prod,prod1));
-            if(prod==0) prod=1;
-            if(prod1==0) prod1=1;
+            left=left*arr[i];
+            right=right*arr[n-i];
+            maxi=max(maxi,max(left,right));
+            right=(right==0)? 1:right;
+            left=(left==0)? 1:left;
         }
-        return ans;
+        return maxi;
     }
 };
