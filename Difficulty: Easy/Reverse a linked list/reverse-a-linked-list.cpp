@@ -15,18 +15,18 @@ class Solution {
   public:
     Node* reverseList(Node* head) {
         // code here
-        Node* prev=NULL;
-        Node* mid;
-        Node* first;
-        mid=head;
-        first=head->next;
-        while(first!=NULL){
-            mid->next=prev;
-            prev=mid;
-            mid=first;
-            first=first->next;
+        Node* left=NULL;
+        Node* pres=head;
+        Node* next=pres->next;
+        
+        while(next!=NULL){
+            pres->next=left;
+            left=pres;
+            pres=next;
+            next=next->next;
         }
-        mid->next=prev;
-        return mid;
+        pres->next=left;
+        left=pres;
+        return pres;
     }
 };
