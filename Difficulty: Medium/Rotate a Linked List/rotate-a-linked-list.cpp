@@ -14,24 +14,19 @@ class Solution {
   public:
     Node* rotate(Node* head, int k) {
         // code here
-        Node* first=head;
-        Node* last=head;
-        int count=0;
-        
-        while(last->next!=NULL){
-            last=last->next;
+        Node* curr=head;
+        int count=1;
+        while(curr->next!=NULL){
+            curr=curr->next;
             count++;
         }
-        count++;
         k=k%count;
-        
-        while(k!=0){
-            k--;
+        for(int i=0;i<k;i++){
+            Node* temp=head;
             head=head->next;
-            first->next=NULL;
-            last->next=first;
-            last=last->next;
-            first=head;
+            temp->next=NULL;
+            curr->next=temp;
+            curr=curr->next;
         }
         
         return head;
