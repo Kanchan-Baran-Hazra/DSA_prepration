@@ -7,9 +7,6 @@ public:
                 st.push(s[i]);
             }
             else{
-                // while(st.size()!=0 && st.top()==s[i]){
-                //     st.pop();
-                // }
                 st.pop();
             }
         }
