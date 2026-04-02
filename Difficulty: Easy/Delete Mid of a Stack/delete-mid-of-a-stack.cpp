@@ -1,22 +1,19 @@
 class Solution {
   public:
-    void helper(stack<int>& s,int pos){
-        if(s.size()==pos){
-            s.pop();
+    // Function to delete middle element of a stack.
+    void helper(stack<int> &st,int pos){
+        if(st.size()==pos){
+            st.pop();
             return;
         }
-        int temp=s.top();
-        s.pop();
-        helper(s,pos);
-        s.push(temp);
+        int current=st.top();
+        st.pop();
+        helper(st,pos);
+        st.push(current);
     }
-    // Function to delete middle element of a stack.
-    void deleteMid(stack<int>& s) {
+    void deleteMid(stack<int>& st) {
         // code here..
-        int n=s.size();
-        int pos;
-        if(n%2!=0) pos=(n/2)+1;
-        else pos=n/2;
-        helper(s,pos);
+        int pos=ceil(st.size()/2.0);
+        helper(st,pos);
     }
 };
