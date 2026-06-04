@@ -1,31 +1,28 @@
 class Solution {
 public:
     int minTaps(int n, vector<int>& ranges) {
-        vector<int> reach(n + 1, 0);
-
-        for (int i = 0; i <= n; i++) {
-            int left = max(0, i - ranges[i]);
-            int right = min(n, i + ranges[i]);
-
-            reach[left] = max(reach[left], right);
+        // vector<pair<int,int>>vec;
+        vector<int>temp(n+1,0);
+        // int n=ranges.size();
+        for(int i=0;i<=n;i++){
+            int x=max(0,i-ranges[i]);
+            int y=min(n,i+ranges[i]);
+            // vec.push_back({x,y});
+            temp[x]=max(temp[x],y);
         }
 
-        int taps = 0;
-        int curEnd = 0;
-        int farthest = 0;
+        int tap_n=0;
+        int max_idx=0;
+        int cur_pos=0;
 
-        for (int i = 0; i < n; i++) {
-            farthest = max(farthest, reach[i]);
-
-            if (farthest <= i)
-                return -1;
-
-            if (i == curEnd) {
-                taps++;
-                curEnd = farthest;
+        for(int i=0;i<n;i++){
+            max_idx=max(max_idx,temp[i]);
+            if(i>=max_idx) return -1;
+            if(i==cur_pos){
+                tap_n++;
+                cur_pos=max_idx;
             }
         }
-
-        return taps;
+        return tap_n;
     }
 };
