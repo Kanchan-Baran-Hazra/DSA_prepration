@@ -1,14 +1,12 @@
 class Solution {
 public:
-    bool helper(vector<int> &nums,int sum,int n,vector<vector<int>> &t){
-        if(sum==0) return 1;
-        if(n<0 && sum!=0) return 0;
-        if(t[n][sum]!=-1) return t[n][sum];
-        if(nums[n]<=sum){
-            return t[n][sum]=helper(nums,sum-nums[n],n-1,t) || helper(nums,sum,n-1,t);
-        }else{
-            return t[n][sum]=helper(nums,sum,n-1,t);
-        }
+    static bool helper(vector<int>& nums,int i,int sum,vector<vector<int>> &dp){
+        if(sum==0) return true;
+        if(sum<0 || i>=nums.size()) return false;
+
+        if(dp[i][sum]!=-1) return dp[i][sum];
+
+        return dp[i][sum]=helper(nums,i+1,sum-nums[i],dp) || helper(nums,i+1,sum,dp);
     }
     bool canPartition(vector<int>& nums) {
         int sum=0;
@@ -16,7 +14,7 @@ public:
             sum+=nums[i];
         }
         if(sum%2!=0) return false;
-        vector<vector<int>>t(nums.size(),vector<int>(sum,-1));
-        return helper(nums,sum/2,nums.size()-1,t);
+        vector<vector<int>>dp(nums.size(),vector<int>(sum+1,-1));
+        return helper(nums,0,sum/2,dp);
     }
 };
