@@ -11,34 +11,17 @@
  */
 class Solution {
 public:
-    TreeNode* findIP(TreeNode* root){
-        TreeNode* IP=root->left;
-        while(IP->right!=NULL && IP->right!=root){
-            IP=IP->right;
-        }
 
-        return IP;
+    static void helper(TreeNode* root,vector<int>& ans){
+        if(root==NULL) return;
+        helper(root->left,ans);
+        ans.push_back(root->val);
+        helper(root->right,ans);
+        return;
     }
     vector<int> inorderTraversal(TreeNode* root) {
         vector<int>ans;
-        TreeNode* temp=root;
-        while(temp!=NULL){
-            if(temp->left==NULL){
-                ans.push_back(temp->val);
-                temp=temp->right;
-            }else{
-                TreeNode* IP=findIP(temp);
-                if(IP->right==NULL){
-                    IP->right=temp;
-                    temp=temp->left;
-                }else{
-                    IP->right=NULL;
-                    ans.push_back(temp->val);
-                    temp=temp->right;
-                }
-            }
-        }
-
+        helper(root,ans);
         return ans;
     }
 };
