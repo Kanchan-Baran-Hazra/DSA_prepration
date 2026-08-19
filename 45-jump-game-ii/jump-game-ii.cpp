@@ -1,20 +1,25 @@
 class Solution {
 public:
     int jump(vector<int>& nums) {
-        if(nums.size()==1) return 0;
-        int minjump=0;
-        int covarage=0;
-        int lastjump=0;
-        for(int i=0;i<nums.size();i++){
-            covarage=max(covarage,i+nums[i]);
+        int n=nums.size();
+        if(n==1) return 0;
+        int can_reach=nums[0];
+        int jump=1;
+        int c_max_jump=can_reach;
+        int i=0;
 
-            if(lastjump==i){
-                lastjump=covarage;
-                minjump++;
-                if(covarage>=nums.size()-1) return minjump;
+        while(i<nums.size() && i<=can_reach){
+            can_reach=max(can_reach,nums[i]+i);
+
+            if(c_max_jump==i && i < n - 1){
+                jump++;
+                c_max_jump=can_reach;
             }
+
+
+            i++;
         }
 
-        return minjump;
+        return jump;
     }
 };
