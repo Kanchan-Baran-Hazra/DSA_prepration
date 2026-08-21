@@ -1,0 +1,19 @@
+PS C:\Users\Kanchan\DSA_Local\Graph\pracktish> g++ 3.cpp
+3.cpp:30:25: error: 'V' is not a type
+     vector<bool>visited(V,false);
+                         ^
+3.cpp:30:27: error: expected identifier before 'false'
+     vector<bool>visited(V,false);
+                           ^~~~~
+3.cpp:30:27: error: expected ',' or '...' before 'false'
+3.cpp: In member function 'void Graph::DFS(int)':
+3.cpp:34:18: error: invalid types '<unresolved overloaded function type>[int]' for array subscript
+         visited[x]=true;
+                  ^
+3.cpp:37:26: error: no matching function for call to 'Graph::visited(int&)'
+             if(!visited(i)){
+                          ^
+3.cpp:30:17: note: candidate: std::vector<bool> Graph::visited(int, int)
+     vector<bool>visited(V,false);
+                 ^~~~~~~
+3.cpp:30:17: note:   candidate expects 2 arguments, 1 provided
