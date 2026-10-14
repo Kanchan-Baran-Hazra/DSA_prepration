@@ -11,7 +11,7 @@ int helper(int st,int en,vector<int>& house, vector<int>& dp){
 }
 
 int house_rob2(){
-    vector<int> house={2,7,9,3,1};
+    vector<int> house={2,7,9,3,2};
     // vector<int> house={30,20,50,10,40};
     int n=house.size();
     vector<int> dp(n+1);
