@@ -1,0 +1,59 @@
+class List{
+    Node* head;
+    Node* tail;
+
+    public:
+    List(){
+        this->head=NULL;
+        this->tail=NULL;
+    }
+
+Node* helperTailFinder(Node* temp,int k){
+        while(temp!=NULL && k!=0){
+            if(temp==NULL) return temp;
+            temp=temp->next;
+            k--;
+        }
+        return temp;
+    }
+
+    Node* helperKgroup(Node* head,int k){
+        Node* temp=head;
+        tail=helperTailFinder(head,k);
+        if(tail!=NULL){
+            Node* temp1=helperKgroup(tail->next,k);
+            pair<Node*,Node*> x =revll(head,tail);
+
+            x.second->next=temp1;
+            return x.first;
+        }else{
+            return head;
+        }
+        return head;
+    }
+
+    void revKgroup(int k){
+        head=helperKgroup(head,k);
+        return;
+    }
+
+    pair<Node*,Node*> revll(Node* head,Node* tail){
+        if(head==NULL || head->next==NULL) return {head,tail};
+        Node* prev=NULL;
+        Node* temp1=head;
+        Node* temp2=head->next;
+        tail=head;
+
+        while(temp1!=NULL){
+            temp1->next=prev;
+            prev=temp1;
+            temp1=temp2;
+            if(temp2!=NULL)
+            temp2=temp2->next;
+        }
+
+        head=prev;
+        return {head,tail};
+    }
+
+}

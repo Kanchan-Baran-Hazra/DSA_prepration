@@ -1,0 +1,93 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class BrouserHistory{
+    class Node{
+        public:
+        string url;
+        Node* next;
+        Node* prev;
+        Node(string url){
+            this->url=url;
+            this->next=NULL;
+            this->prev=NULL;
+        }
+    };
+
+    Node* head;
+    Node* tail;
+    Node* temp;
+
+    public:
+    BrouserHistory(){
+        head=new Node("");
+        tail=new Node("");
+        head->next=tail;
+        tail->prev=head;
+        temp=head;
+    }
+
+    void visit(string s){
+        Node* newnode=new Node(s);
+        temp->next=newnode;
+        newnode->prev=temp;
+        temp=newnode;
+        newnode->next=tail;
+        tail->prev=newnode;
+    }
+
+    void back(){
+        if(temp==head || temp->prev==head) return;
+        temp=temp->prev;
+        cout<<temp->url;
+    }
+
+    void forword(){
+        if(temp->next==tail) return;
+        temp=temp->next;
+        cout<<temp->url;
+    }
+
+    string current_page(){
+        if(temp==head) return "HOME";
+        return temp->url;
+    }
+
+    void show_history(){
+        Node* trav=head->next;
+        while(trav!=tail){
+            cout<<trav->url<<"\n";
+            trav=trav->next;
+        }
+    }
+};
+
+int main(){
+    // cout<<"hello";
+    BrouserHistory bh;
+    bh.visit("google.com");
+    bh.visit("google1.com");
+    bh.visit("google2.com");
+    bh.visit("google3.com");
+    bh.visit("google4.com");
+
+    cout<<bh.current_page()<<"\n\n";
+
+    bh.forword();
+    cout<<bh.current_page()<<"\n\n";
+
+    bh.back();
+    cout<<bh.current_page()<<"\n\n";
+    bh.back();
+    cout<<bh.current_page()<<"\n\n";
+
+    bh.show_history();
+    cout<<bh.current_page()<<"\n\n";
+
+    bh.visit("facebook.com");
+    cout<<bh.current_page()<<"\n\n";
+
+
+    bh.show_history();
+    return 0;
+}
