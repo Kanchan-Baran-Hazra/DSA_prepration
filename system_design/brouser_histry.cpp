@@ -98,6 +98,7 @@ int main(){
     bh.visit("facebook.com");
     cout<<bh.current_page()<<"\n\n";
 
+    bh.visit("chatgpt.ai");
 
     bh.show_history();
     return 0;
