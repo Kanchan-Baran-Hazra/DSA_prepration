@@ -1,0 +1,11 @@
+at the begining id the 2d array have only one row then return the given array
+at first i sort the given 2d array using a comparator function that sort the array based on first element and then second element
+i take two varible and a and 2d array
+now start traversal from begining the sorted array
+in the first stape i set the two variable value first and last, the value of the first row respectivly i++
+now each stape i check the current row first val the prev last value greter or not if not then set last to the current row last
+and i++
+and if it is greter from previous last then create a arrray and push_back first and last and also push to the ans arrray and set firts and last with the current row first and last
+this continue
+
+after the loop complite create the vectoe and anter the first and last and also push to the ans array

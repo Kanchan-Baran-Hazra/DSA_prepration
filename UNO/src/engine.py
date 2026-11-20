@@ -219,7 +219,7 @@ class Game:
 
     def play(self):
         while True:
-            print(f"=== TURN OF === {self.turn} === play of {self.top_card.color if self.top_card!=None else "Any"}=={self.top_card.number if self.top_card!=None else "Any"}")
+            print(f"=== TURN OF === {self.turn.id} === play of {self.top_card.color if self.top_card!=None else "Any"}=={self.top_card.number if self.top_card!=None else "Any"}")
             card=self.turn.play(self.top_card,self.discard_pile,self.add_plus_card)
             if card=="DRAW_PANALTY":
                 self.add_plus_card=0
